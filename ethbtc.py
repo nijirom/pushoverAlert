@@ -5,7 +5,7 @@ import sys
 PUSHOVER_API_TOKEN = ""
 PUSHOVER_USER_KEY = ""
 TARGET_LEVEL = 0.032
-SYMBOL = "ETHBTC"
+SYMBOL = ""
 CHECK_INTERVAL_SECONDS = 5
 
 TICKER_API_URL = f"https://api.binance.com/api/v3/ticker/price?symbol={SYMBOL}"
@@ -90,7 +90,7 @@ def main():
         if current_price >= TARGET_LEVEL:
             if not ALERT_SENT:
                 title = f"{SYMBOL} LEVEL BREACHED!"
-                message = f"ETH/BTC ratio is now {current_price:.6f} (>= {TARGET_LEVEL})."
+                message = f"{SYMBOL} ratio is now {current_price:.6f} (>= {TARGET_LEVEL})."
                 
                 if send_pushover_notification(title, message):
                     ALERT_SENT = True
@@ -116,3 +116,4 @@ if __name__ == "__main__":
         print(f"An unhandled error occurred: {e}")
 
         sys.exit(1)
+
